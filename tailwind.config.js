@@ -7,12 +7,29 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: theme => ({
+        ...theme('colors'),
+        'default': '#d3d3d3',  //replace #d3d3d3 with your desired color
+      }),
+      colors: {
+        'custom-gray': '#d3d3d3',
+      },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'custom-gray': '#d3d3d3',
+      },
+      keyframes: {
+        slideUp: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        }
+      },
+      animation: {
+        slideUp: 'slideUp 1s ease-in-out',
       },
     },
+  },
+  variants: {
+    extend: {},
   },
   plugins: [],
 }
