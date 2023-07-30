@@ -30,7 +30,7 @@ const Loading = () => {
         </div>
       }
       <div className={`fixed inset-0 flex justify-center items-center z-60 transition-colors duration-500 
-            ${isLoaded ? "text-black" : "text-white"} pointer-events-none`}>
+            ${isLoaded ? "text-black" : "text-custom-gray"} pointer-events-none`}>
         <p className={`text-4xl text-center 
           ${isTextVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"}`}>
           A select Collection of BLOK STUDIOS work

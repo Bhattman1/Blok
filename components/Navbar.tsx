@@ -1,13 +1,25 @@
+'use client'
 import Link from 'next/link';
-import React from 'react';
+import Image from 'next/image'; 
+import React, { useEffect, useState } from 'react';
 
 const Navbar = () => {
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
     return (
-        <nav className="flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base xs:text-sm z-5000">
+        <nav className={`flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base xs:text-sm z-5000 ${isMounted ? 'animate-fadeIn' : ''}`}>
             <Link href="/">
-                <div className="text-4xl md:text-2xl sm:text-xl font-bold text-black cursor-pointer hover:opacity-50">
-                    LOGO
-                </div>
+                <Image 
+                    src="/Blok-logo2.png" 
+                    alt="LOGO" 
+                    width={300} 
+                    height={100} 
+                    className="cursor-pointer hover:opacity-50"
+                />
             </Link>
             <div className="flex space-x-4">
                 <div className="text-black cursor-pointer hover:opacity-50">
@@ -28,4 +40,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

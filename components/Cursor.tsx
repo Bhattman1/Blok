@@ -23,7 +23,7 @@ export default function Cursor() {
 
     return (
         <div 
-            className="bg-black w-4 h-4 absolute pointer-events-none rounded " 
+            className="bg-black w-4 h-4 absolute pointer-events-none rounded z-5000" 
             style={{ 
                 left: `${position.x}px`, 
                 top: `${position.y}px`, 
