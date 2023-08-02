@@ -69,6 +69,36 @@ body {
 }
 
 
+
+/* Define the animation for sliding up */
+@keyframes slide-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+/* Define the class to slide up the black screen */
+.animate-slide-up {
+  animation: slide-up 1s forwards;
+}
+
+/* Define the class for fading in */
+.fadeIn2 {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+/* Define the class for fading out */
+.fadeOut2 {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+
+
 /* animations.css , FADING IN FOR NAVBAR
 
 

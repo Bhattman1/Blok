@@ -31,12 +31,12 @@ const Loading = () => {
       }
       <div className={`fixed inset-0 flex justify-center items-center z-60 transition-colors duration-500 
             ${isLoaded ? "text-black" : "text-custom-gray"} pointer-events-none`}>
-        <p className={`text-4xl text-center 
+        <p className={`text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl text-center m-6
           ${isTextVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"}`}>
           A select Collection of BLOK STUDIOS work
         </p>
       </div>
-      <p className={`fixed bottom-0 left-0 text-black text-9xl
+      <p className={`fixed bottom-0 left-0 text-base sm:text-2xl md:text-4xl lg:text-6xl xl:text-9xl text-black m-6
         ${isWorkVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"}`}>
         "1. WORK"
       </p>

@@ -1,43 +1,49 @@
 'use client'
+
 import Link from 'next/link';
-import Image from 'next/image'; 
 import React, { useEffect, useState } from 'react';
 
 const Navbar = () => {
-    const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isSmallViewport, setIsSmallViewport] = useState(false);
 
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
+  useEffect(() => {
+    setIsMounted(true);
+    handleViewportChange(); // Check initial viewport size
+    window.addEventListener('resize', handleViewportChange); // Add event listener for viewport changes
+    return () => {
+      window.removeEventListener('resize', handleViewportChange); // Remove event listener on component unmount
+    };
+  }, []);
 
-    return (
-        <nav className={`flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base xs:text-sm z-5000 ${isMounted ? 'animate-fadeIn' : ''}`}>
-            <Link href="/">
-                <Image 
-                    src="/Blok-logo2.png" 
-                    alt="LOGO" 
-                    width={300} 
-                    height={100} 
-                    className="cursor-pointer hover:opacity-50"
-                />
-            </Link>
-            <div className="flex space-x-4">
-                <div className="text-black cursor-pointer hover:opacity-50">
-                    Portfolio
-                </div>
-                <Link href="/Team">
-                    <div className="text-black cursor-pointer hover:opacity-50">
-                        Team
-                    </div>
-                </Link>
-                <Link href="/ContactUs">
-                    <div className="text-black cursor-pointer hover:opacity-50">
-                        Contact Us
-                    </div>
-                </Link>
-            </div>
-        </nav>
-    )
+  const handleViewportChange = () => {
+    setIsSmallViewport(window.innerWidth <= 640); // Adjust the breakpoint (640px) as needed for small viewports
+  };
+
+  return (
+    <nav className={`flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'} z-5000 ${isMounted ? 'animate-fadeIn' : ''}`}>
+      <Link href="/">
+        
+          <img
+            src={isSmallViewport ? '/Blok_small.png' : '/Blok-logo2.png'}
+            alt="LOGO"
+            className={`w-[35vw] h-[3vh] ${isSmallViewport ? 'w-[7vw] h-[12vh]' : ''} cursor-pointer hover:opacity-50`} // Adjust the width and height for the logo
+          />
+        
+      </Link>
+      <div className="flex space-x-4 text-black cursor-pointer hover:opacity-50">
+      <Link href="/Portfolio">
+        <div>Portfolio</div>
+        </Link>
+        <Link href="/Team">
+          <div>Team</div>
+        </Link>
+        <Link href="/ContactUs">
+          <div>Contact Us</div>
+        </Link>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
