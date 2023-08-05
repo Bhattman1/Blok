@@ -24,7 +24,9 @@ const ContactUsAnimation = () => {
     })
 
     const result = await res.json()
+    
     // Handle result and clear the form fields
+
     console.log(result)
     setName('')
     setEmail('')
