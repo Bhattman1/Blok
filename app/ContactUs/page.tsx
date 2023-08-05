@@ -1,4 +1,4 @@
-import { Cursor, Navbar } from '@/components'
+import { Cursor, Navbar, ContactUsAnimation } from '@/components'
 
 export default function Home() {
     return (
@@ -6,7 +6,8 @@ export default function Home() {
          <Navbar />
         <main className="flex justify-center items-center min-h-screen bg-custom-gray"> 
         <Cursor />
-          cscd
+         
+        <ContactUsAnimation />
         </main>
       </div>
     )

@@ -27,7 +27,7 @@ const Navbar = () => {
           <img
             src={isSmallViewport ? '/Blok_small.png' : '/Blok-logo2.png'}
             alt="LOGO"
-            className={`w-[35vw] h-[3vh] ${isSmallViewport ? 'w-[7vw] h-[12vh]' : ''} cursor-pointer hover:opacity-50`} // Adjust the width and height for the logo
+            className={`w-[18vw]  ${isSmallViewport ? 'w-[6vw]' : ''} cursor-pointer hover:opacity-50 transition-all`} // Adjust the width and height for the logo
           />
         
       </Link>

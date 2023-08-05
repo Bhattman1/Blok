@@ -36,7 +36,7 @@ const Loading = () => {
           A select Collection of BLOK STUDIOS work
         </p>
       </div>
-      <p className={`fixed bottom-0 left-0 text-base sm:text-2xl md:text-4xl lg:text-6xl xl:text-9xl text-black m-6
+      <p className={`fixed bottom-0 left-0 text-4xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-9xl text-black m-6
         ${isWorkVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"}`}>
         "1. WORK"
       </p>
