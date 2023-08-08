@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`font-manrope flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'} z-5000 ${isMounted ? 'animate-fadeIn' : ''}`}>
+    <nav className={`font-Manrope flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'} z-5000 ${isMounted ? 'animate-fadeIn' : ''}`}>
       <Link href="/">
         
           <img
@@ -32,7 +32,7 @@ const Navbar = () => {
           />
         
       </Link>
-      <div className="font-manrope flex space-x-4 text-black cursor-pointer hover:opacity-50">
+      <div className="font-Manrope flex space-x-4 text-black cursor-pointer hover:opacity-50">
       <Link href="/Portfolio">
         <div>Portfolio</div>
         </Link>

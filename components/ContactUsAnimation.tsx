@@ -68,33 +68,41 @@ const ContactUsAnimation = () => {
   };
 
   return (
-    <div style={{ color: 'black' }}>
-      <form className="contact-form" onSubmit={stage < stages.length - 1 ? advanceStage : sendEmail}>
-        <div className="flex justify-between items-center mb-10">
-          <p className={`font-bold transform transition-all duration-500 text-xl ${animate ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'}`}>{stages[stage].question}</p>
-          {stage === 0 && <input type="submit" value="Next" />}
-        </div>
-        {stages[stage].inputName &&
-          <input
-          type={stages[stage].inputName === 'email_id' ? 'email' : 'text'}
-          name={stages[stage].inputName}
-          value={{ from_name: name, email_id: email_id, message: message }[stages[stage].inputName]}
-          onChange={handleInputChange}
-          placeholder="Type your answer here..."
-          className="placeholder-gray-500 bg-transparent focus:outline-none"
-          style={{ borderBottom: '2px solid black' }} // Inline style for black underline
-          required
-        />
-        
-        }
-        {stage !== 0 && <input type="submit" value={stage < stages.length - 1 ? "Next" : "Submit"} />}
-      </form>
-      {confirmation && <p>{confirmation}</p>}
-    </div>
-  );
+    <div style={{ color: 'black', paddingLeft: '40vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100vh' }}>
+        <form className="contact-form" onSubmit={stage < stages.length - 1 ? advanceStage : sendEmail}>
+            <div className="flex flex-col items-start mb-10">
+                <p className={`font-bold transform transition-all duration-500 text-xl ${animate ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'}`} style={{ width: '500px' }}> {/* Here's the fixed width */}
+                    {stages[stage].question}
+                </p>
 
-  
-};
+                {stage === 0 && 
+                    <input type="submit" value="Next" />
+                }
+
+                {stages[stage].inputName && 
+                    <input
+                        type={stages[stage].inputName === 'email_id' ? 'email' : 'text'}
+                        name={stages[stage].inputName}
+                        value={{ from_name: name, email_id: email_id, message: message }[stages[stage].inputName]}
+                        onChange={handleInputChange}
+                        placeholder="Type your answer here..."
+                        className="placeholder-gray-500 bg-transparent focus:outline-none mt-2"
+                        style={{ borderBottom: '2px solid black' }} 
+                        required
+                    />
+                }
+
+                {stage !== 0 && 
+                    <input type="submit" value={stage < stages.length - 1 ? "Next" : "Submit"} className="mt-2" />
+                }
+            </div>
+            {confirmation && <p>{confirmation}</p>}
+        </form>
+    </div>
+);
+
+
+      }
 
 
 export default ContactUsAnimation;
