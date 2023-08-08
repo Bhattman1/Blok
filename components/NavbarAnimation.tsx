@@ -9,24 +9,25 @@ const NavbarAnimation = () => {
 
   useEffect(() => {
     setIsMounted(true);
-    handleViewportChange(); // Check initial viewport size
-    window.addEventListener('resize', handleViewportChange); // Add event listener for viewport changes
+    handleViewportChange();
+    window.addEventListener('resize', handleViewportChange);
     return () => {
-      window.removeEventListener('resize', handleViewportChange); // Remove event listener on component unmount
+      window.removeEventListener('resize', handleViewportChange);
     };
   }, []);
 
   const handleViewportChange = () => {
-    setIsSmallViewport(window.innerWidth <= 640); // Adjust the breakpoint (640px) as needed for small viewports
+    setIsSmallViewport(window.innerWidth <= 640);
   };
 
   return (
     <>
       <div
-        className={`fixed inset-0 bg-black z-[5999] ${isMounted ? 'animate-slide-up' : ''}`}
+        className={`fixed inset-0 bg-black z-[5998] ${isMounted ? 'animate-slide-up' : ''}`}
       ></div>
-      <nav
-        className={`flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'} z-[6000] transition-all`}
+      
+      <nav 
+        className={`font-manrope flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'} z-[5999] ${isMounted ? 'animate-fadeIn' : ''}`}
         style={{
           color: isMounted ? '#000' : '#d3d3d3',
           transition: 'color 1s',
@@ -36,17 +37,17 @@ const NavbarAnimation = () => {
           <img
             src={isSmallViewport ? '/Blok_small.png' : '/Blok-logo2.png'}
             alt="LOGO"
-            className={`w-[30vw]  ${isSmallViewport ? 'w-[4vw]' : ''} cursor-pointer hover:opacity-50 transition-all`} // Adjust the width and height for the logo
+            className={`w-[18vw] ${isSmallViewport ? 'w-[6vw]' : ''} cursor-pointer hover:opacity-50 transition-all`}
             style={{
               filter: isMounted ? 'grayscale(0%)' : 'grayscale(100%)',
               transition: 'filter 1s',
             }}
           />
         </Link>
-        <div className="flex space-x-4 text-black cursor-pointer hover:opacity-50">
-        <Link href="/Portfolio">
-        <div>Portfolio</div>
-        </Link>
+        <div className="font-manrope flex space-x-4 cursor-pointer hover:opacity-50">
+          <Link href="/Portfolio">
+            <div>Portfolio</div>
+          </Link>
           <Link href="/Team">
             <div>Team</div>
           </Link>
@@ -55,6 +56,7 @@ const NavbarAnimation = () => {
           </Link>
         </div>
       </nav>
+
       <div className="fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center bg-custom-gray z-0">
         <div className="aspect-w-16 aspect-h-9 max-w-full w-full">
           <video className="object-cover pointer-events-none" src="/catchphraseCropped.mp4" autoPlay loop muted />
@@ -65,3 +67,7 @@ const NavbarAnimation = () => {
 };
 
 export default NavbarAnimation;
+
+
+
+

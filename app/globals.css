@@ -120,3 +120,18 @@ body {
   transition: opacity 1000ms;
 }
 */
+
+
+/* FONT */
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/app/fonts/Manrope-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Use this to ensure text remains visible during font loading */
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+}

@@ -1,55 +1,100 @@
 "use client"
 
-import { useState, FormEvent, ChangeEvent } from 'react';
+
+import React, { useState, FormEvent, ChangeEvent } from 'react';
+import emailjs from 'emailjs-com';
+
+const stages = [
+  { question: "Not sure where to start? Let's point you in the right direction.", inputName: "" },
+  { question: "What is your first and last name?", inputName: "from_name" },
+  { question: "What is your email?", inputName: "email_id" },
+  { question: "What did you want to enquire about?", inputName: "message" },
+];
 
 const ContactUsAnimation = () => {
+  const [stage, setStage] = useState(0);
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email_id, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [confirmation, setConfirmation] = useState("");
+  const [animate, setAnimate] = useState(false);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const updateField = (name: string, value: string) => {
+    switch (name) {
+      case "from_name": setName(value); break;
+      case "email_id": setEmail(value); break;
+      case "message": setMessage(value); break;
+      default: break;
+    }
+  }
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    updateField(stages[stage].inputName, event.target.value);
+  }
+
+  const advanceStage = (event: FormEvent) => {
+    event.preventDefault();
+    setAnimate(true);
+    setTimeout(() => {
+      setAnimate(false);
+      setStage(prevStage => prevStage + 1 === stages.length ? 0 : prevStage + 1);
+    }, 500);
+  }
+
+  const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Here, you would typically send the data to your server or a service like SendGrid
-    // for example by fetching your API route:
-    const res = await fetch('/api/send', {
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        message: message,
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST'
-    })
-
-    const result = await res.json()
+    setAnimate(true);
     
-    // Handle result and clear the form fields
-
-    console.log(result)
-    setName('')
-    setEmail('')
-    setMessage('')
+    emailjs.send('service_j6mz1kv', 'template_62l9e17', {
+      from_name: name,
+      email_id: email_id,
+      message: message
+    }, 'QZWDImmJVfqYWJ8Wl')
+      .then((result) => {
+          console.log(result.text);
+          setName('');
+          setEmail('');
+          setMessage('');
+          setConfirmation('Email sent successfully!');
+          setTimeout(() => {
+            setAnimate(false);
+            setStage(0);
+            setConfirmation('');
+          }, 500);
+      }, (error) => {
+          console.log(error.text);
+          setConfirmation('An error occurred while sending the email.');
+      });
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ color: 'black' }}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)} required />
-      </label>
-      <label>
-        Email:
-        <input type="email" value={email} onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} required />
-      </label>
-      <label>
-        Message:
-        <textarea value={message} onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)} required />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
+    <div style={{ color: 'black' }}>
+      <form className="contact-form" onSubmit={stage < stages.length - 1 ? advanceStage : sendEmail}>
+        <div className="flex justify-between items-center mb-10">
+          <p className={`font-bold transform transition-all duration-500 text-xl ${animate ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'}`}>{stages[stage].question}</p>
+          {stage === 0 && <input type="submit" value="Next" />}
+        </div>
+        {stages[stage].inputName &&
+          <input
+          type={stages[stage].inputName === 'email_id' ? 'email' : 'text'}
+          name={stages[stage].inputName}
+          value={{ from_name: name, email_id: email_id, message: message }[stages[stage].inputName]}
+          onChange={handleInputChange}
+          placeholder="Type your answer here..."
+          className="placeholder-gray-500 bg-transparent focus:outline-none"
+          style={{ borderBottom: '2px solid black' }} // Inline style for black underline
+          required
+        />
+        
+        }
+        {stage !== 0 && <input type="submit" value={stage < stages.length - 1 ? "Next" : "Submit"} />}
+      </form>
+      {confirmation && <p>{confirmation}</p>}
+    </div>
   );
+
+  
 };
+
 
 export default ContactUsAnimation;

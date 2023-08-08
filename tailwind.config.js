@@ -6,12 +6,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'manrope': ['Manrope', 'sans-serif'],
+      },
       transitionProperty: {
         'height': 'height',
       },
       backgroundColor: theme => ({
         ...theme('colors'),
-        'default': '#d3d3d3',  //replace #d3d3d3 with your desired color
+        'default': '#d3d3d3',  // replace #d3d3d3 with your desired color
       }),
       colors: {
         'custom-gray': '#d3d3d3',
@@ -59,4 +62,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-};
+}

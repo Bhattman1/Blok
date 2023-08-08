@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
+
 const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isSmallViewport, setIsSmallViewport] = useState(false);
@@ -21,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'} z-5000 ${isMounted ? 'animate-fadeIn' : ''}`}>
+    <nav className={`font-manrope flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'} z-5000 ${isMounted ? 'animate-fadeIn' : ''}`}>
       <Link href="/">
         
           <img
@@ -31,7 +32,7 @@ const Navbar = () => {
           />
         
       </Link>
-      <div className="flex space-x-4 text-black cursor-pointer hover:opacity-50">
+      <div className="font-manrope flex space-x-4 text-black cursor-pointer hover:opacity-50">
       <Link href="/Portfolio">
         <div>Portfolio</div>
         </Link>
