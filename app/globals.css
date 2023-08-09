@@ -82,7 +82,8 @@ body {
 
 /* Define the class to slide up the black screen */
 .animate-slide-up {
-  animation: slide-up 1s forwards;
+  animation: slide-up 2s forwards;
+  
 }
 
 /* Define the class for fading in */
@@ -134,5 +135,20 @@ body {
 
 body {
   font-family: 'Manrope', sans-serif;
+}
+
+
+
+
+/* ... (other styles remain unchanged) */
+
+.invertedText, .invertedText img, .invertedLogo { 
+  mix-blend-mode: difference;
+  color: white;
+}
+
+.invertedLogo img { 
+  mix-blend-mode: difference;
+  filter: invert(100%);
 }
 

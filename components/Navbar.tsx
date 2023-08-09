@@ -32,7 +32,7 @@ const Navbar = () => {
           />
         
       </Link>
-      <div className="font-Manrope flex space-x-4 text-black cursor-pointer hover:opacity-50">
+      <div className="font-Manrope flex space-x-4 text-black cursor-pointer hover:opacity-50 invertedText">
       <Link href="/Portfolio">
         <div>Portfolio</div>
         </Link>

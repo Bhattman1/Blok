@@ -14,7 +14,7 @@ module.exports = {
       },
       backgroundColor: theme => ({
         ...theme('colors'),
-        'default': '#d3d3d3',  // replace #d3d3d3 with your desired color
+        'default': '#d3d3d3',
       }),
       colors: {
         'custom-gray': '#d3d3d3',
@@ -61,5 +61,14 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.invert': {
+          filter: 'invert(1)'
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ]
 }
