@@ -70,7 +70,7 @@ const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
             <div className="font-manrope fixed top-6 right-6 flex space-x-4 cursor-pointer hover:opacity-50 z-[10001] invertedText animate-fadeIn">  
                 <Link href="/Portfolio">
-                    <div>Portfolio</div>
+                    <div>Work</div>
                 </Link>
                 <Link href="/Team">
                     <div>Team</div>

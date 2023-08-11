@@ -34,7 +34,7 @@ const Navbar = () => {
       </Link>
       <div className="font-Manrope flex space-x-4 text-black cursor-pointer hover:opacity-50 invertedText">
       <Link href="/Portfolio">
-        <div>Portfolio</div>
+        <div>Work</div>
         </Link>
         <Link href="/Team">
           <div>Team</div>
