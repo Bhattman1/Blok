@@ -4,7 +4,7 @@ import Cursor from './Cursor';
 import Loading from './Loading';
 import NavbarAnimation from './NavbarAnimation';
 import ContactUsAnimation from './ContactUsAnimation';
-
+import Team from './Team';
 
 export {
     Navbar,
@@ -12,5 +12,6 @@ export {
     Cursor,
     Loading,
     NavbarAnimation,
-    ContactUsAnimation
+    ContactUsAnimation,
+    Team
 }

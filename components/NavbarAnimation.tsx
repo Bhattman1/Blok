@@ -6,7 +6,7 @@ import Link from 'next/link';
 const NavbarAnimation = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isSmallViewport, setIsSmallViewport] = useState(false);
-  const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+  
 
   useEffect(() => {
     setIsMounted(true);
@@ -15,9 +15,7 @@ const NavbarAnimation = () => {
 
     // A timeout to change the navbar color after the animation. 
     // Assuming the animation takes 1s. Adjust this based on your animation's duration.
-    setTimeout(() => {
-      setIsAnimationComplete(true);
-    }, 1000);
+    
 
     return () => {
       window.removeEventListener('resize', handleViewportChange);
@@ -28,12 +26,35 @@ const NavbarAnimation = () => {
     setIsSmallViewport(window.innerWidth <= 640);
   };
 
+
+//
+
+const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const replacementWords = ["ACTUALLY", "TRULY", "SURELY", "CLEARLY", "REALLY", "RIGHTLY", "DECIDEDLY", "DEFINITELY"];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prevIndex) => (prevIndex + 1) % replacementWords.length);
+    }, 1000);
+
+    // Clear interval on unmount
+    return () => clearInterval(interval);
+  }, []);
+
+
+  const longestWordLength = Math.max(...replacementWords.map(word => word.length));
+
+
+//
+
+
+// Assuming default background is black. Change the default value as needed.
+
+
+
   return (
     <>
-      <div
-       // className={`fixed inset-0 bg-black z-[1] ${isMounted ? 'animate-slide-up z-[1]' : ''}`}
-        className={`fixed inset-0 bg-black z-[1] ${isMounted ? 'animate-slide-up z-[1]' : ''}`}
-      ></div>
+       <div className={`fixed inset-0 bg-black z-10 ${isMounted ? 'animate-slide-up' : ''}`}></div>
 
 <nav className={`flex`}>
 <div className="fixed top-6 left-6 z-[10001] animate-fadeIn invertedLogo">
@@ -60,11 +81,21 @@ const NavbarAnimation = () => {
             </div>
         </nav>
 
-      <div className="fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center bg-custom-gray z-60000 ">
-        <div className="aspect-w-16 aspect-h-9 max-w-full w-full z-600">
-          <video className="object-cover pointer-events-none z-600" src="/catchphraseCropped.mp4" autoPlay loop muted />
+        <div className=" font-manrope fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center bg-transparent animate-fadeIn z-[50] blackText">
+    <div className="max-w-full w-full text-center text-base xs:text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-8xl blackText">
+        WEBDESIGN THAT <br />
+        <div className="inline-flex items-center">
+            <div style={{ width: `${longestWordLength}ch`, textAlign: 'right', marginRight: '0.75ch' }}>
+                {replacementWords[currentWordIndex]}
+            </div>
+            <div> LOOKS GOOD</div>
         </div>
-      </div>
+    </div>
+</div>
+
+
+
+
     </>
   );
 };

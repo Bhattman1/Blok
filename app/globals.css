@@ -152,3 +152,16 @@ body {
   filter: invert(100%);
 }
 
+
+
+.invertedText2 {
+  color: white;
+  background-color: black;
+}
+
+.blackText {
+
+  
+  mix-blend-mode: difference;
+  color: white;
+}
