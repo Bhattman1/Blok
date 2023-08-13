@@ -68,10 +68,11 @@ const ContactUsAnimation = () => {
   };
 
   return (
-    <div style={{ color: 'black', paddingLeft: '40vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100vh' }}>
-        <form className="contact-form" onSubmit={stage < stages.length - 1 ? advanceStage : sendEmail}>
+    <div style={{ color: 'black', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <form className="contact-form" onSubmit={stage < stages.length - 1 ? advanceStage : sendEmail} style={{ width: '600px' }}>
             <div className="flex flex-col items-start mb-10">
-                <p className={`font-bold transform transition-all duration-500 text-xl ${animate ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'}`} style={{ width: '500px' }}> {/* Here's the fixed width */}
+            <p className={`font-bold transform transition-all duration-500 text-xl ${animate ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'}`} style={{ width: '600px' }}>
+
                     {stages[stage].question}
                 </p>
 

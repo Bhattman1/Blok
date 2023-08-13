@@ -181,6 +181,14 @@ body {
 
 
 
+.noBlend {
+  mix-blend-mode: normal; /* Reset the blending mode */
+  color: black;           /* Set the text color */
+  background-color: #d3d3d3; /* Set a solid background */
+  padding: 0 5px;         /* Add some padding so background encompasses the text nicely */
+  display: inline-block;  /* Ensure background fits around text properly */
+}
+
 
 
 

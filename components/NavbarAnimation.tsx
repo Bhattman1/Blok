@@ -30,7 +30,7 @@ const NavbarAnimation = () => {
 //
 
 const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const replacementWords = ["ACTUALLY", "TRULY", "SURELY", "CLEARLY", "REALLY", "RIGHTLY", "DECIDEDLY", "DEFINITELY"];
+  const replacementWords = [" ","ACTUALLY", "TRULY", "SURELY", "CLEARLY", "REALLY", "RIGHTLY", "ONLY", "FULLY", "ACTUALLY", "TRULY", "SURELY", "CLEARLY", "REALLY", "RIGHTLY", "DECIDEDLY", "DEFINITELY","ACTUALLY", "TRULY", "SURELY", "CLEARLY", "REALLY", "RIGHTLY", "DECIDEDLY", "DEFINITELY"];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -58,7 +58,7 @@ const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
 <nav className={`flex`}>
 <div className="fixed top-6 left-6 z-[10001] animate-fadeIn invertedLogo">
-  <Link href="/YourDesiredLink" className="cursor-pointer hover:opacity-50 transition-all">
+  <Link href="/" className="cursor-pointer hover:opacity-50 transition-all">
       <img
           src={isSmallViewport ? '/Blok_small.png' : '/Blok-logo2.png'}
           alt="LOGO"
@@ -68,7 +68,7 @@ const [currentWordIndex, setCurrentWordIndex] = useState(0);
 </div>
 
 
-            <div className="font-manrope fixed top-6 right-6 flex space-x-4 cursor-pointer hover:opacity-50 z-[10001] invertedText animate-fadeIn">  
+            <div className="font-manrope fixed top-6 right-6 flex space-x-4 cursor-pointer hover:opacity-50 z-[10001] invertedText animate-fadeIn text-black">  
                 <Link href="/Portfolio">
                     <div>Work</div>
                 </Link>
@@ -81,10 +81,10 @@ const [currentWordIndex, setCurrentWordIndex] = useState(0);
             </div>
         </nav>
 
-        <div className=" font-manrope fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center bg-transparent animate-fadeIn z-[50] blackText">
-    <div className="max-w-full w-full text-center text-base xs:text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-8xl blackText">
+        <div className=" font-manrope fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center bg-transparent animate-fadeIn z-[50] blackText text-black">
+    <div className=" max-w-full w-full text-center text-base xs:text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-8xl blackText text-black">
         WEBDESIGN THAT <br />
-        <div className="inline-flex items-center">
+        <div className="inline-flex items-center ">
             <div style={{ width: `${longestWordLength}ch`, textAlign: 'right', marginRight: '0.75ch' }}>
                 {replacementWords[currentWordIndex]}
             </div>

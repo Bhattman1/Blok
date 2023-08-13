@@ -17,6 +17,7 @@ module.exports = {
         'default': '#d3d3d3',
       }),
       colors: {
+        'text': '#000000', // Default text color set to black
         'custom-gray': '#d3d3d3',
       },
       backgroundImage: {
