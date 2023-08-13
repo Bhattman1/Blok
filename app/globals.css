@@ -80,6 +80,17 @@ body {
   }
 }
 
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+
 /* Define the class to slide up the black screen */
 .animate-slide-up {
   animation: slide-up 2s forwards;
@@ -165,3 +176,45 @@ body {
   mix-blend-mode: difference;
   color: white;
 }
+
+
+
+
+
+
+
+
+
+@keyframes slide-up-coming {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes slide-down-soon {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(50%);
+  }
+}
+
+
+
+
+/* New slide animations for COMING and SOON */
+.animate-slide-up-coming {
+  animation: slide-up-coming 0.5s forwards;
+}
+
+.animate-slide-down-soon {
+  animation: slide-down-soon 0.5s forwards;
+}
+
+
+
+

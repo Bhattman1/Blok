@@ -1,15 +1,11 @@
-'use client'
-
+'use client';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
-
 const Navbar = () => {
-  const [isMounted, setIsMounted] = useState(false);
   const [isSmallViewport, setIsSmallViewport] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
     handleViewportChange(); // Check initial viewport size
     window.addEventListener('resize', handleViewportChange); // Add event listener for viewport changes
     return () => {
@@ -22,19 +18,17 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`font-Manrope flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'} z-5000 ${isMounted ? 'animate-fadeIn' : ''}`}>
+    <nav className={`font-Manrope flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'}  fixed top-0 left-0 blackText2 z-[70000] `}>
       <Link href="/">
-        
-          <img
-            src={isSmallViewport ? '/Blok_small.png' : '/Blok-logo2.png'}
-            alt="LOGO"
-            className={`w-[18vw]  ${isSmallViewport ? 'w-[6vw]' : ''} cursor-pointer hover:opacity-50 transition-all`} // Adjust the width and height for the logo
-          />
-        
+        <img
+          src={isSmallViewport ? '/Blok_small.png' : '/Blok-logo2.png'}
+          alt="LOGO"
+          className={`w-[18vw] ${isSmallViewport ? 'w-[6vw]' : ''} cursor-pointer hover:opacity-50 transition-all `} // Adjust the width and height for the logo
+        />
       </Link>
-      <div className="font-Manrope flex space-x-4 text-black cursor-pointer hover:opacity-50 invertedText">
-      <Link href="/Portfolio">
-        <div>Work</div>
+      <div className="font-Manrope flex space-x-4 text-black cursor-pointer hover:opacity-50 ">
+        <Link href="/Portfolio">
+          <div>Work</div>
         </Link>
         <Link href="/Team">
           <div>Team</div>

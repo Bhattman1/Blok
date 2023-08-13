@@ -1,9 +1,14 @@
-import { Cursor, Navbar, Loading, Video } from '@/components'
+import { Cursor, Navbar, Loading, Video, Navbar2 } from '@/components'
 export default function Home() {
     return (
         <div  >
-            <Navbar />
-            <main className="flex justify-center items-center min-h-screen bg-custom-gray"> 
+            
+            <Navbar2 />
+            
+            <Cursor />
+
+            <main className="flex justify-center items-center min-h-screen bg-custom-gray "> 
+            
                 <Loading />
                 
                 <Cursor />

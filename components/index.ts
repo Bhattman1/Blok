@@ -5,6 +5,7 @@ import Loading from './Loading';
 import NavbarAnimation from './NavbarAnimation';
 import ContactUsAnimation from './ContactUsAnimation';
 import Team from './Team';
+import Navbar2 from './Navbar2';
 
 export {
     Navbar,
@@ -13,5 +14,6 @@ export {
     Loading,
     NavbarAnimation,
     ContactUsAnimation,
-    Team
+    Team,
+    Navbar2
 }
