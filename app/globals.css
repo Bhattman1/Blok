@@ -91,6 +91,7 @@ body {
 }
 
 
+
 /* Define the class to slide up the black screen */
 .animate-slide-up {
   animation: slide-up 2s forwards;

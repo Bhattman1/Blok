@@ -56,19 +56,19 @@ const [currentWordIndex, setCurrentWordIndex] = useState(0);
     <>
        <div className={`fixed inset-0 bg-black z-10 ${isMounted ? 'animate-slide-up' : ''}`}></div>
 
-<nav className={`flex`}>
-<div className="fixed top-6 left-6 z-[10001] animate-fadeIn invertedLogo">
+<nav className={`font-Manrope flex items-center justify-between w-full p-6  text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'}  `}>
+<div className="font-Manrope flex items-center justify-between w-full p-6 top-0 left-0 fixed  z-[10001] animate-fadeIn invertedLogo">
   <Link href="/" className="cursor-pointer hover:opacity-50 transition-all">
       <img
           src={isSmallViewport ? '/Blok_small.png' : '/Blok-logo2.png'}
           alt="LOGO"
-          className={`w-[18vw] ${isSmallViewport ? 'w-[6vw]' : ''} invertedLogo`} // Added the invertedLogo class here
+          className={`w-[18vw] ${isSmallViewport ? 'w-[6vw]' : ''} cursor-pointer hover:opacity-50 transition-all invertedLogo`} // Added the invertedLogo class here
       />
   </Link>
 </div>
 
 
-            <div className="font-manrope fixed top-6 right-6 flex space-x-4 cursor-pointer hover:opacity-50 z-[10001] invertedText animate-fadeIn text-black">  
+            <div className="font-Manrope   fixed top-6 right-6 flex space-x-4 cursor-pointer hover:opacity-50 z-[10001] invertedText font-bold animate-fadeIn text-black">  
                 <Link href="/Portfolio">
                     <div>Work</div>
                 </Link>
@@ -81,7 +81,7 @@ const [currentWordIndex, setCurrentWordIndex] = useState(0);
             </div>
         </nav>
 
-        <div className=" font-manrope fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center bg-transparent animate-fadeIn z-[50] blackText text-black">
+        <div className=" font-Manrope fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center bg-transparent animate-fadeIn z-[50] blackText text-black">
     <div className=" max-w-full w-full text-center text-base xs:text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-8xl blackText text-black">
         WEBDESIGN THAT <br />
         <div className="inline-flex items-center ">

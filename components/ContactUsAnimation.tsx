@@ -1,15 +1,17 @@
 "use client"
 
 
-import React, { useState, FormEvent, ChangeEvent } from 'react';
+import React, { useState, FormEvent, ChangeEvent, useEffect } from 'react';
+
 import emailjs from 'emailjs-com';
 
 const stages = [
-  { question: "Not sure where to start? Let's point you in the right direction.", inputName: "" },
+  { question: "Not sure where to start? <br> Let's point you in the right direction.<br>", inputName: "" },
   { question: "What is your first and last name?", inputName: "from_name" },
   { question: "What is your email?", inputName: "email_id" },
   { question: "What did you want to enquire about?", inputName: "message" },
 ];
+
 
 const ContactUsAnimation = () => {
   const [stage, setStage] = useState(0);
@@ -17,7 +19,25 @@ const ContactUsAnimation = () => {
   const [email_id, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [confirmation, setConfirmation] = useState("");
-  const [animate, setAnimate] = useState(false);
+  const [animate, setAnimate] = useState(true);
+  const [isInitialMount, setIsInitialMount] = useState(true); // New state variable
+
+  const goForward = (event: FormEvent) => {
+    advanceStage(event);
+  };
+
+  const goBackward = () => {
+    setAnimate(true); // Start the fade-out animation for backward transition
+
+    setTimeout(() => {
+      setStage(prevStage => (prevStage - 1 + stages.length) % stages.length);
+
+      // Start the fade-in animation after updating the stage
+      setTimeout(() => {
+        setAnimate(false);
+      }, 500);
+    }, 500);
+  };
 
   const updateField = (name: string, value: string) => {
     switch (name) {
@@ -32,14 +52,35 @@ const ContactUsAnimation = () => {
     updateField(stages[stage].inputName, event.target.value);
   }
 
-  const advanceStage = (event: FormEvent) => {
-    event.preventDefault();
-    setAnimate(true);
-    setTimeout(() => {
-      setAnimate(false);
-      setStage(prevStage => prevStage + 1 === stages.length ? 0 : prevStage + 1);
-    }, 500);
+  const autoAdvanceStage = () => {
+    if (stage === 0) {
+        setTimeout(() => advanceStage(), 2000);  // delay of 3 seconds
+    }
   }
+  
+
+  const advanceStage = (event?: FormEvent) => {
+    if (event) event.preventDefault();
+    
+    if (stage === stages.length - 1) {
+      sendEmail(event as FormEvent<HTMLFormElement>);
+      return;
+    }
+  
+    setAnimate(true);  // Start the fade-out animation regardless of the stage
+  
+    setTimeout(() => {
+        setStage(prevStage => (prevStage + 1) % stages.length);
+  
+        // Start the fade-in animation after updating the stage
+        setTimeout(() => {
+            setAnimate(false);
+        }, 1000);
+  
+    }, 1000);  // Delay for the fade-out to complete
+  };
+
+
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,50 +101,110 @@ const ContactUsAnimation = () => {
             setAnimate(false);
             setStage(0);
             setConfirmation('');
-          }, 500);
+          }, 3000);
       }, (error) => {
           console.log(error.text);
           setConfirmation('An error occurred while sending the email.');
       });
   };
 
-  return (
-    <div style={{ color: 'black', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-    <form className="contact-form" onSubmit={stage < stages.length - 1 ? advanceStage : sendEmail} style={{ width: '600px' }}>
-            <div className="flex flex-col items-start mb-10">
-            <p className={`font-bold transform transition-all duration-500 text-xl ${animate ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'}`} style={{ width: '600px' }}>
+  useEffect(() => {
+    
+    // Only run the animation when the component first mounts
+    if (isInitialMount) {
+        setTimeout(() => {
+            setAnimate(false);
+            setIsInitialMount(false); // Set to false after the initial fade-in
+            autoAdvanceStage(); // Auto advance if on stage 0
+        }, 100);
+    }
+}, [isInitialMount]); // Depend on isInitialMount
 
-                    {stages[stage].question}
-                </p>
+useEffect(() => {
+  // If the stage is the first one, then auto advance
+  if (stage === 0 && !isInitialMount) {
+    autoAdvanceStage();
+  }
+}, [stage]); // Watching for changes in stage
 
-                {stage === 0 && 
-                    <input type="submit" value="Next" />
-                }
 
-                {stages[stage].inputName && 
-                    <input
-                        type={stages[stage].inputName === 'email_id' ? 'email' : 'text'}
-                        name={stages[stage].inputName}
-                        value={{ from_name: name, email_id: email_id, message: message }[stages[stage].inputName]}
-                        onChange={handleInputChange}
-                        placeholder="Type your answer here..."
-                        className="placeholder-gray-500 bg-transparent focus:outline-none mt-2"
-                        style={{ borderBottom: '2px solid black' }} 
-                        required
-                    />
-                }
 
-                {stage !== 0 && 
-                    <input type="submit" value={stage < stages.length - 1 ? "Next" : "Submit"} className="mt-2" />
-                }
-            </div>
-            {confirmation && <p>{confirmation}</p>}
-        </form>
+
+
+
+return (
+  <>
+     <style>
+{`
+    @media (max-width: 768px) {
+        .contact-form:not(.stage-zero) {
+            margin-left: 340px; /* Adjust this value as necessary */
+        }
+
+        .contact-form, .contact-form p, .contact-form input, .contact-form button {
+            font-size: 0.95em; /* This reduces the text size by 20%. Adjust as needed. */
+        }
+    }
+`}
+</style>
+
+
+    <div
+      style={{
+        color: "black",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <form
+    className={`contact-form ${stage === 0 ? "stage-zero" : ""}`}
+    onSubmit={advanceStage}
+    style={{ width: "600px" }}
+>
+        <div className="flex flex-col items-start mb-10">
+        <p
+    className={`question-text transform transition-all duration-500 text-xl ${
+        isInitialMount || animate ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
+    } ${stage === 0 ? "question-text" : ""}`} 
+    style={{ width: "600px", textAlign: stage === 0 ? "center" : "left" }}
+    dangerouslySetInnerHTML={{ __html: stages[stage].question }}
+/>
+
+
+          {stages[stage].inputName && 
+            <input
+              type={stages[stage].inputName === 'email_id' ? 'email' : 'text'}
+              name={stages[stage].inputName}
+              value={{ from_name: name, email_id: email_id, message: message }[stages[stage].inputName]}
+              onChange={handleInputChange}
+              placeholder="type your answer here..."
+              className="placeholder-gray-500 bg-transparent focus:outline-none mt-10"
+              style={{ borderBottom: '2px solid black' }} 
+              required
+            />
+          }
+
+          <div className="flex mt-2">
+            {stage !== 0 && (
+              <button type="button" onClick={goBackward} className="mr-4 mt-2">
+                ←
+              </button>
+            )}
+            {(stage !== 0 || stage === stages.length - 1) && (
+              <button type="submit" className="mt-2">
+                →
+              </button>
+            )}
+          </div>
+        </div>
+        {confirmation && <p>{confirmation}</p>}
+      </form>
     </div>
+  </>
 );
-
-
-      }
-
+};
 
 export default ContactUsAnimation;

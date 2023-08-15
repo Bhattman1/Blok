@@ -26,7 +26,7 @@ const Navbar = () => {
           className={`w-[18vw] ${isSmallViewport ? 'w-[6vw]' : ''} cursor-pointer hover:opacity-50 transition-all `} // Adjust the width and height for the logo
         />
       </Link>
-      <div className="font-Manrope flex space-x-4 text-black cursor-pointer hover:opacity-50 ">
+      <div className="font-Manrope flex space-x-4 text-black font-bold cursor-pointer hover:opacity-50 ">
         <Link href="/Portfolio">
           <div>Work</div>
         </Link>
