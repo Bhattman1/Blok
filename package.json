@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "@types/node": "20.4.4",
-    "@types/react": "18.2.15",
+    "@types/react": "^18.2.15",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "emailjs-com": "^3.2.0",
-    "next": "13.4.12",
+    "next": "^13.4.12",
     "nodemailer": "^6.9.4",
     "postcss": "8.4.27",
     "react": "18.2.0",
