@@ -94,10 +94,14 @@ body {
 
 /* Define the class to slide up the black screen */
 .animate-slide-up {
-  animation: slide-up 2s forwards;
+  
+ 
+    /*all: initial;
+    /*background-color: black;*/
+  
+    animation: slide-up 2s forwards;
   
 }
-
 /* Define the class for fading in */
 .fadeIn2 {
   opacity: 1;
@@ -154,15 +158,16 @@ body {
 
 /* ... (other styles remain unchanged) */
 
-.invertedText, .invertedText img, .invertedLogo { 
+.invertedText,.invertedLogo { 
   mix-blend-mode: difference;
-  color: white;
+  color: white;  
 }
 
 .invertedLogo img { 
   mix-blend-mode: difference;
   filter: invert(100%);
 }
+
 
 
 
@@ -179,15 +184,17 @@ body {
 }
 
 
+.blackLogo {
+  mix-blend-mode: normal;
+  filter: none; /* This is to ensure the inverted filter from the invertedLogo class is removed */
+  color: black;
+}
 
 
-
-.noBlend {
-  mix-blend-mode: normal; /* Reset the blending mode */
-  color: black;           /* Set the text color */
-  background-color: #d3d3d3; /* Set a solid background */
-  padding: 0 5px;         /* Add some padding so background encompasses the text nicely */
-  display: inline-block;  /* Ensure background fits around text properly */
+.blackLogo, .noBlend {
+  color: black !important;
+  background-color: transparent !important;
+  mix-blend-mode: normal !important;
 }
 
 
