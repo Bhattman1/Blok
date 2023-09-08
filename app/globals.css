@@ -163,24 +163,34 @@ body {
   color: white;  
 }
 
+
+
 .invertedLogo img { 
   mix-blend-mode: difference;
   filter: invert(100%);
 }
+.always-black {
+  color: black !important; /* force the color to be black */
+   /* force z-index to be on top */
+  position: relative;
+  
+  
+  
+}
 
 
+.invert {
+  filter: invert(1);
+}
 
 
 .invertedText2 {
   color: white;
-  background-color: black;
+  background-color: rgb(72, 68, 68);
 }
 
-.blackText {
-
-  
-  mix-blend-mode: difference;
-  color: white;
+.black-text {
+  color: black;
 }
 
 

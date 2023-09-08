@@ -59,20 +59,20 @@ const Loading = () => {
         ></div>
       )}
   
-      <div
-        className={`font-Manrope fixed inset-0 flex justify-center items-center z-60 transition-colors duration-500 ${
-          isLoaded ? "text-black" : "text-custom-gray"
-        } pointer-events-none`}
+  <div
+      className={`font-Manrope fixed inset-0 flex justify-center items-center z-60 transition-colors duration-500 ${
+        isLoaded ? "text-black" : "text-custom-gray"
+      } pointer-events-none`}
+    >
+      <p
+        className={`
+        text-sm sm:text-base md:text-lg lg:text-xl xl:text-4xl text-center m-6 ${
+          isBlackScreenDone ? "opacity-0 " : isTextVisible ? (isFadingOut ? "transition-opacity duration-500 opacity-0" : "transition-opacity duration-500 opacity-100") : "opacity-0"
+        } whitespace-nowrap`}
       >
-        <p
-  className={`text-base sm:text-lg md:text-xl lg:text-2xl xl:text-4xl text-center m-6 ${
-    isBlackScreenDone ? "opacity-0 " : isTextVisible ? (isFadingOut ? "transition-opacity duration-500 opacity-0" : "transition-opacity duration-500 opacity-100") : "opacity-0"
-  }`}
->
-  A select Collection of BLOK STUDIOS work
-</p>
-
-      </div>
+        A select Collection of BLOK STUDIOS work
+      </p>
+    </div>
   
       <p
     className={`font-manrope fixed bottom-0 left-0 text-4xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-9xl text-black m-6 ${
