@@ -102,6 +102,11 @@ body {
     animation: slide-up 2s forwards;
   
 }
+
+
+
+
+
 /* Define the class for fading in */
 .fadeIn2 {
   opacity: 1;
@@ -244,3 +249,81 @@ body {
 
 
 
+@keyframes slideUpDisappear {
+  0% {
+    transform: translateY(0);
+    height: 100%;
+  }
+  100% {
+    transform: translateY(100%);
+    height: 0;
+  }
+}
+
+
+.logo {
+  /* Other styles */
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  animation: logoDisappear 1s forwards;
+}
+
+@keyframes logoDisappear {
+  0% {
+    mask-position: 0% 100%;
+  }
+  100% {
+    mask-position: 100% 100%;
+  }
+}
+
+.moved-up-sm {
+  margin-bottom: 5px; /* or any other pixel value you'd like */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.logo-cover {
+  position: relative;
+}
+
+.logo-cover::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: black;
+  z-index: 11; /* Make it higher than the black screen to ensure it covers the logo */
+}
+
+.animate-slide-up .logo-cover::before {
+  animation: slideUp 1s forwards;
+}
+
+
+
+@keyframes fadeIn2 {
+  0%, 50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+.element-to-fade {
+  opacity: 0; /* Start with the element hidden */
+  animation: fadeIn2 2s forwards;
+}

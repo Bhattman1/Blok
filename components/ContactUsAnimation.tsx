@@ -135,18 +135,34 @@ useEffect(() => {
 return (
   <>
      <style>
-{`
-    @media (max-width: 768px) {
-        .contact-form:not(.stage-zero) {
-            margin-left: 340px; /* Adjust this value as necessary */
-        }
+      {`
+        @media (max-width: 768px) {
+            .contact-form:not(.stage-zero) {
+                margin-left: 340px; /* Adjust this value as necessary */
+            }
 
-        .contact-form, .contact-form p, .contact-form input, .contact-form button {
-            font-size: 0.95em; /* This reduces the text size by 20%. Adjust as needed. */
+            .contact-form, .contact-form p, .contact-form input, .contact-form button {
+                font-size: 0.95em; /* This reduces the text size by 20%. Adjust as needed. */
+            }
+
+            .bottom-text {
+                font-size: 0.7em; /* Making the text smaller */
+            }
+
+            .bottom-left-content, .bottom-right-content {
+                left: 10px !important;
+                bottom: 15px !important;
+                right: auto !important;
+            }
+
+            .bottom-right-content {
+                top: unset !important;
+                bottom: 0 !important;
+            }
         }
-    }
-`}
-</style>
+      `}
+    </style>
+
 
 
     <div
@@ -202,9 +218,34 @@ return (
         </div>
         {confirmation && <p>{confirmation}</p>}
       </form>
+
+       {/* Bottom left content */}
+      
+       <div 
+        className="bottom-text bottom-left-content"
+        style={{
+          position: "absolute",
+          bottom: "10px",
+          left: "10px"
+        }}
+      >
+        <p>blokstudios@gmail.com</p>
+        <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">Connect: Instagram</a>
+      </div>
+
+      {/* Bottom right content */}
+      <div 
+        className="bottom-text bottom-right-content"
+        style={{
+          position: "absolute",
+          bottom: "10px",
+          right: "10px"
+        }}
+      >
+        <p>All rights reserved Copyright © BLOK STUDIOS 2023</p>
+      </div>
     </div>
   </>
-);
-};
+);;}
 
 export default ContactUsAnimation;

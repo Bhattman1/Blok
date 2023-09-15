@@ -18,26 +18,22 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`font-Manrope flex items-center justify-between w-full p-6 bg-custom-gray text-lg sm:text-base ${isSmallViewport ? 'text-xs' : 'xs:text-sm'}  fixed top-0 left-0 blackText2 z-[70000] `}>
-      <Link href="/">
-        <img
-          src={isSmallViewport ? '/Blok_small.png' : '/Blok-logo2.png'}
-          alt="LOGO"
-          className={`w-[18vw] ${isSmallViewport ? 'w-[6vw]' : ''} cursor-pointer hover:opacity-50 transition-all `} // Adjust the width and height for the logo
-        />
-      </Link>
-      <div className="font-Manrope flex space-x-4 text-black font-bold cursor-pointer hover:opacity-50 ">
-        <Link href="/Portfolio">
-          <div>Work</div>
+    <nav className={`font-Manrope flex items-center justify-between w-full p-6 text-xs sm:text-base fixed top-0 left-0 z-[10001] animate-fadeIn`}>
+    <div className={`flex items-center`}>
+        <Link href="/">
+            <img
+                src={isSmallViewport ? '/smallLogoScreen.svg' : '/Blok-logo2.png'}
+                alt="LOGO"
+                className={`w-[16vw] ${isSmallViewport ? 'w-[5vw]' : 'cursor-pointer hover:opacity-50 transition-all'}`}
+            />
         </Link>
-        <Link href="/Team">
-          <div>Team</div>
-        </Link>
-        <Link href="/ContactUs">
-          <div>Contact Us</div>
-        </Link>
-      </div>
-    </nav>
+    </div>
+    <div className={`fixed top-5 right-7 flex space-x-3 text-sm cursor-pointer hover:opacity-50 z-[10001] text-black`}>
+        <Link href="/Portfolio">Work</Link>
+        <Link href="/Team">Team</Link>
+        <Link href="/ContactUs">Contact Us</Link>
+    </div>
+</nav>
   );
 }
 

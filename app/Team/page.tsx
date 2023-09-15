@@ -4,7 +4,7 @@ export default function Home() {
         <div>
             
             <Navbar />
-          
+            <title>Blok Studios</title>
             
             <main className="flex justify-center items-center min-h-screen bg-custom-gray"> 
             

@@ -1,4 +1,5 @@
 'use client'
+'use client'
 // NavbarAnimation.tsx
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
@@ -10,10 +11,12 @@ const NavbarAnimation = () => {
   const [blackScreenAnimationCompleted, setBlackScreenAnimationCompleted] = useState(false);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
-  const replacementWords = ["ACTUALLY ","ACTUALLY ", "TRULY", "SURELY", "HONESTLY", "__________"];
+  const replacementWords = ["ACTUALLY ","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","__________"];
 
   const longestWordLength = Math.max(...replacementWords.map(word => word.length));
-
+ 
+ 
+ 
   const handleViewportChange = () => {
     setIsSmallViewport(window.innerWidth <= 640);
   };
@@ -66,15 +69,15 @@ const NavbarAnimation = () => {
     <>
       <div ref={blackScreenRef} className={`fixed inset-0 bg-black z-10 ${isMounted ? 'animate-slide-up' : ''}`}>
       <div className={`fixed inset-0 flex items-center justify-center z-50 opacity-100  animate-fadeIn`}>
-  <img src="/smallLogoScreen.svg" alt="Small Logo" className="text-4xl invert w-1/2"/>
+  <img src="/smallLogoScreen.svg" alt="Small Logo" className="text-4xl invert w-1/4"/>
 </div>
 
       </div>
       
 
 
-      <nav className={`font-Manrope flex items-center justify-between w-full p-6 text-xs sm:text-base`}>
-    <div className={`font-Manrope flex items-center justify-between w-full p-6 top-0 left-0 fixed z-[10001] animate-fadeIn invertedLogo`}>
+      <nav className={`font-Manrope flex items-center justify-between w-full p-6 text-xs`}>
+    <div className={`flex items-center justify-between w-full p-6 top-0 left-0 fixed z-[10001] element-to-fade invertedLogo`}>
         <Link href="/">
             <img
                 src={isSmallViewport ? '/smallLogoScreen.svg' : '/Blok-logo2.png'}
@@ -83,7 +86,7 @@ const NavbarAnimation = () => {
             />
         </Link>
     </div>
-    <div className={`font-Manrope fixed top-5 right-14 flex space-x-3 text-lg sm:text-sm cursor-pointer hover:opacity-50 z-[10001] invertedText animate-fadeIn`}>
+    <div className={`fixed top-5 right-7 flex space-x-3 text-sm cursor-pointer hover:opacity-50 z-[10001] invertedText element-to-fade`}>
         <Link href="/Portfolio">Work</Link>
         <Link href="/Team">Team</Link>
         <Link href="/ContactUs">Contact Us</Link>
@@ -91,17 +94,19 @@ const NavbarAnimation = () => {
 </nav>
 
 
+
+
 <div className={`text-black font-Manrope fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center animate-fadeIn z-0`}>
     <div className={`${isSmallViewport ? 'text-2xl' : 'text-sm'} sm:text-2xl md:text-3xl lg:text-5xl xl:text-7xl text-center w-full`}>
-        <span className={`${isSmallViewport ? 'text-3xl' : ''}`}>WEBDESIGN THAT</span>
+        <span className={`${isSmallViewport ? 'text-base' : ''}`}>WEBDESIGN THAT</span>
         <br />
         <div className="inline-flex items-center justify-between">
-        <div style={{ minWidth: `${longestWordLength}ch` }} className={`${isSmallViewport ? 'mr-4 text-right' : 'mr-5 text-right'}`}>
-                <span className={`always-black ${isSmallViewport ? 'text-3xl' : ''}`}>
+        <div style={{ minWidth: `${longestWordLength}ch` }} className={`${isSmallViewport ? 'mr-1.5 text-right moved-up-sm' : 'mr-5 text-right'}`}>
+                <span className={`always-black ${isSmallViewport ? 'text-base' : ''}`}>
                     {blackScreenAnimationCompleted && replacementWords[currentWordIndex]}
                 </span>
             </div>
-            <span className={`always-black ${isSmallViewport ? 'text-3xl' : ''}`}>LOOKS GOOD</span>
+            <span className={`always-black ${isSmallViewport ? 'text-base' : ''}`}>LOOKS GOOD</span>
         </div>
     </div>
 </div>
