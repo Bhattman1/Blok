@@ -21,10 +21,37 @@ const ContactUsAnimation = () => {
   const [confirmation, setConfirmation] = useState("");
   const [animate, setAnimate] = useState(true);
   const [isInitialMount, setIsInitialMount] = useState(true); // New state variable
+  
+
+  const [showOverlay, setShowOverlay] = useState(true);
+  const [isLoaded, setLoaded] = useState(false);
+  const [isBlackScreenDone, setBlackScreenDone] = useState(false);
+  const [isTextVisible, setTextVisible] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setTextVisible(true);
+            setTimeout(() => {
+                setLoaded(true);
+                setTimeout(() => {
+                    setBlackScreenDone(true);
+                    setTimeout(() => {
+                        setShowOverlay(false);
+                    }, 2000); 
+                }, 1000);
+            }, 1000);
+        }, 2000);
+    }, []);
+
+
 
   const goForward = (event: FormEvent) => {
     advanceStage(event);
   };
+
+
+ 
+
 
   const goBackward = () => {
     setAnimate(true); // Start the fade-out animation for backward transition
@@ -66,6 +93,11 @@ const ContactUsAnimation = () => {
       sendEmail(event as FormEvent<HTMLFormElement>);
       return;
     }
+
+
+    
+  
+
   
     setAnimate(true);  // Start the fade-out animation regardless of the stage
   
@@ -134,118 +166,113 @@ useEffect(() => {
 
 return (
   <>
-     <style>
-      {`
-        @media (max-width: 768px) {
-            .contact-form:not(.stage-zero) {
-                margin-left: 340px; /* Adjust this value as necessary */
-            }
+      {showOverlay && (
+          <>
+              {!isBlackScreenDone && (
+                  <div
+                      className={`font-Manrope fixed inset-0 bg-black z-100 flex justify-center items-center ${
+                          isLoaded ? "animate-slideOut" : "animate-slideDown"
+                      }`}
+                  ></div>
+              )}
+              <div
+                  className={`font-Manrope fixed inset-0 flex justify-center items-center z-60 transition-colors duration-500 ${
+                      isLoaded ? "text-black" : "text-custom-gray"
+                  }`}
+              >
+                  <p
+                      className={`
+                          text-sm sm:text-base md:text-lg lg:text-xl xl:text-4xl text-center m-6 ${
+                              isBlackScreenDone ? "opacity-0 animate-fadeOut" : isTextVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"
+                          }`}
+                      dangerouslySetInnerHTML={{ __html: stages[0].question }}
+                  >
+                  </p>
+              </div>
+          </>
+      )}
+      {!showOverlay && (
+            <div
+                style={{
+                    color: "black",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                }}
+            >
+                <form
+                    className={`contact-form ${stage === 0 ? "stage-zero" : ""}`}
+                    onSubmit={advanceStage}
+                    style={{ width: "600px" }}
+                >
+                    <div className="flex flex-col items-start mb-10">
+                        <p
+                            className={`question-text transition-opacity duration-500 text-xl ${
+                                isInitialMount || animate || (stage === 1 && animate) ? "opacity-0" : "opacity-100"
+                            } ${stage === 0 ? "question-text" : ""} ${stage === 1 ? "animate-fadeIn" : ""}`}
+                            style={{ width: "600px", textAlign: stage === 0 ? "center" : "left" }}
+                            dangerouslySetInnerHTML={{ __html: stages[stage].question }}
+                        />
 
-            .contact-form, .contact-form p, .contact-form input, .contact-form button {
-                font-size: 0.95em; /* This reduces the text size by 20%. Adjust as needed. */
-            }
+                        {stages[stage].inputName && 
+                            <input
+                                type={stages[stage].inputName === 'email_id' ? 'email' : 'text'}
+                                name={stages[stage].inputName}
+                                value={{ from_name: name, email_id: email_id, message: message }[stages[stage].inputName]}
+                                onChange={handleInputChange}
+                                placeholder="type your answer here..."
+                                className="placeholder-gray-500 bg-transparent focus:outline-none mt-10"
+                                style={{ borderBottom: '2px solid black' }}
+                                required
+                            />
+                        }
 
-            .bottom-text {
-                font-size: 0.7em; /* Making the text smaller */
-            }
+                        <div className="flex mt-2">
+                            {stage !== 0 && (
+                                <button type="button" onClick={goBackward} className="mr-4 mt-2">
+                                    ←
+                                </button>
+                            )}
+                            {(stage !== 0 || stage === stages.length - 1) && (
+                                <button type="submit" className="mt-2">
+                                    →
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                    {confirmation && <p>{confirmation}</p>}
+                </form>
 
-            .bottom-left-content, .bottom-right-content {
-                left: 10px !important;
-                bottom: 15px !important;
-                right: auto !important;
-            }
+              {/* Bottom left content */}
+              <div 
+                  className="bottom-text bottom-left-content"
+                  style={{
+                      position: "absolute",
+                      bottom: "10px",
+                      left: "10px"
+                  }}
+              >
+                  <p>blokstudios@gmail.com</p>
+                  <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">Connect: Instagram</a>
+              </div>
 
-            .bottom-right-content {
-                top: unset !important;
-                bottom: 0 !important;
-            }
-        }
-      `}
-    </style>
-
-
-
-    <div
-      style={{
-        color: "black",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <form
-    className={`contact-form ${stage === 0 ? "stage-zero" : ""}`}
-    onSubmit={advanceStage}
-    style={{ width: "600px" }}
->
-        <div className="flex flex-col items-start mb-10">
-        <p
-    className={`question-text transform transition-all duration-500 text-xl ${
-        isInitialMount || animate ? "translate-y-4 opacity-0" : "translate-y-0 opacity-100"
-    } ${stage === 0 ? "question-text" : ""}`} 
-    style={{ width: "600px", textAlign: stage === 0 ? "center" : "left" }}
-    dangerouslySetInnerHTML={{ __html: stages[stage].question }}
-/>
-
-
-          {stages[stage].inputName && 
-            <input
-              type={stages[stage].inputName === 'email_id' ? 'email' : 'text'}
-              name={stages[stage].inputName}
-              value={{ from_name: name, email_id: email_id, message: message }[stages[stage].inputName]}
-              onChange={handleInputChange}
-              placeholder="type your answer here..."
-              className="placeholder-gray-500 bg-transparent focus:outline-none mt-10"
-              style={{ borderBottom: '2px solid black' }} 
-              required
-            />
-          }
-
-          <div className="flex mt-2">
-            {stage !== 0 && (
-              <button type="button" onClick={goBackward} className="mr-4 mt-2">
-                ←
-              </button>
-            )}
-            {(stage !== 0 || stage === stages.length - 1) && (
-              <button type="submit" className="mt-2">
-                →
-              </button>
-            )}
+              {/* Bottom right content */}
+              <div 
+                  className="bottom-text bottom-right-content"
+                  style={{
+                      position: "absolute",
+                      bottom: "10px",
+                      right: "10px"
+                  }}
+              >
+                  <p>All rights reserved Copyright © BLOK STUDIOS 2023</p>
+              </div>
           </div>
-        </div>
-        {confirmation && <p>{confirmation}</p>}
-      </form>
-
-       {/* Bottom left content */}
-      
-       <div 
-        className="bottom-text bottom-left-content"
-        style={{
-          position: "absolute",
-          bottom: "10px",
-          left: "10px"
-        }}
-      >
-        <p>blokstudios@gmail.com</p>
-        <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">Connect: Instagram</a>
-      </div>
-
-      {/* Bottom right content */}
-      <div 
-        className="bottom-text bottom-right-content"
-        style={{
-          position: "absolute",
-          bottom: "10px",
-          right: "10px"
-        }}
-      >
-        <p>All rights reserved Copyright © BLOK STUDIOS 2023</p>
-      </div>
-    </div>
+      )}
   </>
-);;}
+);
+;}
 
 export default ContactUsAnimation;

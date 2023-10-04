@@ -67,9 +67,9 @@ const NavbarAnimation = () => {
 
   return (
     <>
-      <div ref={blackScreenRef} className={`fixed inset-0 bg-black z-10 ${isMounted ? 'animate-slide-up' : ''}`}>
+      <div ref={blackScreenRef} className={`fixed inset-0 bg-black z-10 ${isMounted ? 'animate-slide-up2' : ''}`}>
       <div className={`fixed inset-0 flex items-center justify-center z-50 opacity-100  animate-fadeIn`}>
-  <img src="/smallLogoScreen.svg" alt="Small Logo" className="text-4xl invert w-1/4"/>
+  <img src="/smallLogoScreen.svg" alt="Small Logo" className="text-4xl invert w-1/6"/>
 </div>
 
       </div>
@@ -96,18 +96,19 @@ const NavbarAnimation = () => {
 
 
 
-<div className={`text-black font-Manrope fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center animate-fadeIn z-0`}>
+<div className={`text-black font-Manrope fixed top-[60px] bottom-0 left-0 right-0 flex items-center justify-center animate-fadeIn z-0 mt-[-70px]`}>
     <div className={`${isSmallViewport ? 'text-2xl' : 'text-sm'} sm:text-2xl md:text-3xl lg:text-5xl xl:text-7xl text-center w-full`}>
         <span className={`${isSmallViewport ? 'text-base' : ''}`}>WEBDESIGN THAT</span>
         <br />
-        <div className="inline-flex items-center justify-between">
-        <div style={{ minWidth: `${longestWordLength}ch` }} className={`${isSmallViewport ? 'mr-1.5 text-right moved-up-sm' : 'mr-5 text-right'}`}>
-                <span className={`always-black ${isSmallViewport ? 'text-base' : ''}`}>
-                    {blackScreenAnimationCompleted && replacementWords[currentWordIndex]}
-                </span>
-            </div>
-            <span className={`always-black ${isSmallViewport ? 'text-base' : ''}`}>LOOKS GOOD</span>
-        </div>
+        <div className={`inline-flex items-center justify-between ${isSmallViewport ? '' : 'mt-[20px]'} `}>
+    <div style={{ minWidth: `${longestWordLength}ch` }} className={`${isSmallViewport ? 'mr-1.5 text-right moved-up-sm' : 'mr-5 text-right'}`}>
+        <span className={`always-black ${isSmallViewport ? 'text-base' : ''}`}>
+            {blackScreenAnimationCompleted && replacementWords[currentWordIndex]}
+        </span>
+    </div>
+    <span className={`always-black ${isSmallViewport ? 'text-base' : ''}`}>LOOKS GOOD</span>
+</div>
+
     </div>
 </div>
     </>

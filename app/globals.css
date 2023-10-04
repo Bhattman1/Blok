@@ -92,7 +92,19 @@ body {
 
 
 
-@keyframes slideUp {
+/* Define the class to slide up the black screen */
+.animate-slide-up {
+  
+ 
+    /*all: initial;
+    /*background-color: black;*/
+  
+    animation: slide-up 2s forwards;
+  
+}
+
+
+@keyframes slideUp2 {
   from {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
@@ -101,12 +113,9 @@ body {
   }
 }
 
-.animate-slide-up  {
-  animation: slideUp 2s forwards;
+.animate-slide-up2  {
+  animation: slideUp2 1s forwards;
 }
-
-
-
 
 
 

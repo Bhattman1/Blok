@@ -1,0 +1,40 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* To ensure the overlay is on top */
+  animation: overlayExit 2s forwards;
+}
+
+.overlayText {
+  color: white;
+  opacity: 0;
+  animation: textAppear 0.5s forwards, textDisappear 0.5s 2.5s forwards; /* Adjust times as needed */
+}
+
+@keyframes textAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes textDisappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes overlayExit {
+  to {
+    transform: translateY(100%);
+  }
+}
