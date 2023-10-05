@@ -208,10 +208,13 @@ return (
                     style={{ width: "600px" }}
                 >
                     <div className="flex flex-col items-start mb-10">
-                        <p
-                            className={`question-text transition-opacity duration-500 text-xl ${
-                                isInitialMount || animate || (stage === 1 && animate) ? "opacity-0" : "opacity-100"
-                            } ${stage === 0 ? "question-text" : ""} ${stage === 1 ? "animate-fadeIn" : ""}`}
+                    <p
+    className={`question-text transition-opacity duration-500 text-xl ${
+        animate ? "animate-fadeOut" : "animate-fadeIn"
+    }`}
+  
+
+
                             style={{ width: "600px", textAlign: stage === 0 ? "center" : "left" }}
                             dangerouslySetInnerHTML={{ __html: stages[stage].question }}
                         />

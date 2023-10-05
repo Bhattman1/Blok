@@ -2,7 +2,7 @@ import { Cursor, Navbar, Loading, Video, Navbar2 } from '@/components'
 export default function Home() {
     return (
         <div  >
-            <title>Blok Studios</title>
+            <title>BLOK STUDIOS</title>
             <Navbar2 />
             
             <Cursor />

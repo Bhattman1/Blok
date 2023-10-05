@@ -344,3 +344,18 @@ body {
       bottom: 100%;
   }
 }
+
+
+
+@keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-fadeOut {
+  animation: fadeOutAnimation 1s forwards;
+}

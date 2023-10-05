@@ -8,6 +8,10 @@ const Team = () => {
   const [isBlackScreenDone, setBlackScreenDone] = useState(false);
   const [isTextVisible, setTextVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false); // New state for content visibility
+  const [fadeOutText, setFadeOutText] = useState(false);
+
+
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -17,15 +21,20 @@ const Team = () => {
         setTimeout(() => {
           setBlackScreenDone(true);
           setTimeout(() => {
-            setShowOverlay(false);
+            setFadeOutText(true);  // Initiate the text fade out
             setTimeout(() => {
-              setContentVisible(true); // Set content visibility after 5 seconds
-            }, 10);
-          }, 2000); // set a delay for fade out
-        }, 1000); // duration of slide out animation
+              setShowOverlay(false);
+              setTimeout(() => {
+                setContentVisible(true);
+              }, 10);
+            }, 2000);
+          }, 2000);
+        }, 1000);
       }, 1000);
     }, 2000);
   }, []);
+
+
 
   return (
     <>
@@ -45,11 +54,13 @@ const Team = () => {
           } pointer-events-none`}
         >
           <p
-            className={`
-              text-sm sm:text-base md:text-lg lg:text-xl xl:text-4xl text-center m-6 ${
-                isBlackScreenDone ? "opacity-0 animate-fadeOut" : isTextVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"
-              } whitespace-nowrap`}
-            >
+  className={`
+    text-sm sm:text-base md:text-lg lg:text-xl xl:text-4xl text-center m-6 ${
+      fadeOutText ? "animate-fadeOut" : isTextVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"
+    } whitespace-nowrap`}
+>
+
+
               Come meet the team.
             </p>
           </div>

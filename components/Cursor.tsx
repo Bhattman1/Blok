@@ -30,7 +30,8 @@ export default function Cursor() {
       style={{ 
           left: `${position.x}px`, 
           top: `${position.y}px`, 
-          transform: 'translate(-50%, -50%)' 
+          transform: 'translate(-50%, -50%)' ,
+          opacity: 0.6  
       }}
     />
   );
