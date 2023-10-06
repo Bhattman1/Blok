@@ -205,7 +205,7 @@ return (
                 <form
                     className={`contact-form ${stage === 0 ? "stage-zero" : ""}`}
                     onSubmit={advanceStage}
-                    style={{ width: "600px" }}
+                    style={{ width: "600px", marginLeft: '190px'}}
                 >
                     <div className="flex flex-col items-start mb-10">
                     <p
@@ -248,31 +248,39 @@ return (
                     {confirmation && <p>{confirmation}</p>}
                 </form>
 
-              {/* Bottom left content */}
-              <div 
-                  className="bottom-text bottom-left-content"
-                  style={{
-                      position: "absolute",
-                      bottom: "10px",
-                      left: "10px"
-                  }}
-              >
-                  <p>blokstudios@gmail.com</p>
-                  <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">Connect: Instagram</a>
-              </div>
 
-              {/* Bottom right content */}
-              <div 
-                  className="bottom-text bottom-right-content"
-                  style={{
-                      position: "absolute",
-                      bottom: "10px",
-                      right: "10px"
-                  }}
-              >
-                  <p>All rights reserved Copyright © BLOK STUDIOS 2023</p>
-              </div>
-          </div>
+
+
+{/* Bottom left content */}
+<div 
+    className="bottom-text bottom-left-content absolute md:bottom-10 bottom-16 left-5"
+>
+    <p>blokstudios@gmail.com</p>
+</div>
+
+{/* Instagram content */}
+<div 
+    className="bottom-text absolute bottom-4 left-5"
+>
+    <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">Connect: Instagram</a>
+</div>
+
+{/* Bottom right content on larger screens */}
+<div 
+    className="hidden md:block bottom-text bottom-right-content absolute bottom-4 right-5"
+>
+    <p>All rights reserved Copyright © BLOK STUDIOS 2023</p>
+</div>
+
+{/* Bottom right content on small screens */}
+<div 
+    className="md:hidden bottom-text bottom-right-content absolute bottom-10 left-5"
+>
+    <p>All rights reserved Copyright © BLOK STUDIOS 2023</p>
+</div>
+</div>
+
+
       )}
   </>
 );
