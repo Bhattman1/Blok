@@ -76,7 +76,7 @@ const Team = () => {
 
                     {/* Text container */}
 <div className="w-full md:w-1/2 flex items-center justify-center md:justify-start text-left text-black ">
-    <p className="uppercase text-black mx-10">Welcome to Blok, the digital architects shaping the future of web design and development. We are a team of dynamic innovators, creators, and builders who take pride in crafting pixel-perfect websites and delivering top-notch web solutions that stand out in today's digital landscape. Established in 2023, our mission has been to empower businesses by providing them with unique, high-quality, and responsive web solutions that resonate with their brand identity, engage their audience, and catalyse their growth in the digital marketplace. At Blok, we value innovation and creativity above all.</p>
+    <p className="uppercase text-black mx-10 md:mx-0">Welcome to Blok, the digital architects shaping the future of web design and development. We are a team of dynamic innovators, creators, and builders who take pride in crafting pixel-perfect websites and delivering top-notch web solutions that stand out in today's digital landscape. Established in 2023, our mission has been to empower businesses by providing them with unique, high-quality, and responsive web solutions that resonate with their brand identity, engage their audience, and catalyse their growth in the digital marketplace. At Blok, we value innovation and creativity above all.</p>
 </div>
 
                 </div>
