@@ -74,7 +74,7 @@ const Team = () => {
     {/* Text container */}
     <div className="w-full lg:w-2/3 flex flex-col items-center lg:items-start justify-center text-left text-black px-4 lg:pl-0 lg:pr-10">
         <h2 className="text-lg md:text-3xl lg:text-6xl mb-4 text-center lg:text-left">WE ARE<br />BLOK STUDIOS</h2> {/* Adjusted text size for mobile */}
-        <p className="text-black text-xs md:text-base lg:text-base text-transform: uppercase;"> {/* Adjusted text size for mobile */}
+        <p className="text-black text-xs text-transform: uppercase md:text-base lg:text-base text-transform: uppercase;"> {/* Adjusted text size for mobile */}
             Welcome to Blok, the digital architects shaping the future of web design and development. 
             <br /> <br />
             We are a team of dynamic innovators, creators, and builders who take pride in crafting pixel-perfect websites and delivering top-notch web solutions that stand out in today's digital landscape. 
