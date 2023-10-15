@@ -11,7 +11,7 @@ const NavbarAnimation = () => {
   const [blackScreenAnimationCompleted, setBlackScreenAnimationCompleted] = useState(false);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
-  const replacementWords = ["ACTUALLY ","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","__________"];
+  const replacementWords = ["ACTUALLY ","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY", "ACTUALLY ","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY", "ACTUALLY ","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","ACTUALLY ", "TRULY", "SURELY", "HONESTLY","__________"];
 
   const longestWordLength = Math.max(...replacementWords.map(word => word.length));
  

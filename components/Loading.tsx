@@ -1,119 +1,111 @@
-'use client'
-import React, { useEffect, useState } from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
+import '../app/Team.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+
 
 const Loading = () => {
+  const [showOverlay, setShowOverlay] = useState(true);
   const [isLoaded, setLoaded] = useState(false);
   const [isBlackScreenDone, setBlackScreenDone] = useState(false);
   const [isTextVisible, setTextVisible] = useState(false);
-  const [isWorkVisible, setWorkVisible] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false); 
+  const [fadeOutText, setFadeOutText] = useState(false);
+  const [textRotation, setTextRotation] = useState<string>('');
 
-  const [isComingVisible, setComingVisible] = useState(false);
-  const [isSoonVisible, setSoonVisible] = useState(false);
-
-  const [isFadingOut, setFadingOut] = useState(false);
-
-
-  setTimeout(() => {
-    setComingVisible(true);
-    setTimeout(() => {
-      setSoonVisible(true);
-    }, 500); // delay for the "soon" animation
-  }, 500); // delay for the "coming" animation
+  const [showArrow, setShowArrow] = useState(false);
+  const [showInstaText, setShowInstaText] = useState(false);
   
 
 
   useEffect(() => {
-    setTimeout(() => {
-      setTextVisible(true);
-      setTimeout(() => {
-        setWorkVisible(true);
-        setTimeout(() => {
-          setLoaded(true);
-          setTimeout(() => {
-            setBlackScreenDone(true);
-            setTimeout(() => {
-              setFadingOut(true); // start the fade out
-              setTimeout(() => {
-                setComingVisible(true); // 'coming' fades in
-                setTimeout(() => {
-                  setSoonVisible(true); // 'soon' fades in and the animation sequence continues
-                }, 500);
-              }, 500); // half a second after 'A select Collection of BLOK STUDIOS work' fades in
-            }, 2000); // set a delay for fade out
-          }, 1000); // duration of your slide out animation
-        }, 2000);
-      }, 1000);
-    }, 2000);
-  }, []);
-  
+    const runAnimation = async () => {
+        await new Promise(r => setTimeout(r, 2000));
+        setTextVisible(true);
 
-  
+        await new Promise(r => setTimeout(r, 1000));
+        setLoaded(true);
+
+        await new Promise(r => setTimeout(r, 2000));
+        setBlackScreenDone(true);
+        setFadeOutText(true);
+
+        await new Promise(r => setTimeout(r, 1000));
+        setShowOverlay(false);
+
+        await new Promise(r => setTimeout(r, 1000));
+        setContentVisible(true);
+
+        await new Promise(r => setTimeout(r, 1000));
+        setShowInstaText(true);
+    }
+
+    runAnimation();
+}, []);
+
+
+
 
   return (
     <>
-      {!isBlackScreenDone && (
-        <div
-          className={`font-Manrope fixed inset-0 bg-black z-100 flex justify-center items-center ${
-            isLoaded ? "animate-slideOut" : "animate-slideDown"
-          }`}
-        ></div>
+      {showOverlay && (
+        <>
+          {!isBlackScreenDone && (
+            <div
+              className={`font-Manrope fixed inset-0 bg-black z-100 flex justify-center items-center ${
+                isLoaded ? "animate-slideOut" : "animate-slideDown"
+              }`}
+            ></div>
+          )}
+
+          <div
+            className={`font-Manrope fixed inset-0 flex justify-center items-center z-60 transition-colors duration-500 ${
+              isLoaded ? "text-black" : "text-custom-gray"
+            } pointer-events-none`}
+          >
+            <p
+              className={`
+                text-sm sm:text-base md:text-lg lg:text-xl xl:text-4xl text-center m-6 ${
+                  fadeOutText ? "animate-fadeOut" : isTextVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"
+                } whitespace-nowrap`}
+            >
+              A select Collection of BLOK STUDIOS work
+            </p>
+          </div>
+        </>
       )}
-  
-  <div
-      className={`font-Manrope fixed inset-0 flex justify-center items-center z-60 transition-colors duration-500 ${
-        isLoaded ? "text-black" : "text-custom-gray"
-      } pointer-events-none`}
-    >
-      <p
-        className={`
-        text-sm sm:text-base md:text-lg lg:text-xl xl:text-4xl text-center m-6 ${
-          isBlackScreenDone ? "opacity-0 " : isTextVisible ? (isFadingOut ? "transition-opacity duration-500 opacity-0" : "transition-opacity duration-500 opacity-100") : "opacity-0"
-        } whitespace-nowrap`}
-      >
-        A select Collection of BLOK STUDIOS work
-      </p>
-    </div>
-  
-      <p
-    className={`font-manrope fixed bottom-0 left-0 text-4xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-9xl text-black m-6 ${
-    isBlackScreenDone ? "opacity-0" : isWorkVisible ? (isFadingOut ? "transition-opacity duration-500 opacity-0" : "transition-opacity duration-500 opacity-100") : "opacity-0"
-    }`}
-  >
-        
 
-
-
-
-</p>
-
-  
-<div
-  className={`font-Manrope fixed inset-0 flex justify-center items-center z-60 transition-colors duration-500 ${
-    isLoaded ? "text-black" : "text-custom-gray"
-  }`}
+<div className={`font-Manrope fixed inset-0 flex justify-center items-center z-[250] transition-colors duration-500 text-custom-gray ${contentVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"}`}>
+    <div className="flex flex-col items-center">
+        <p 
+            className={`text-lg text-black md:text-3xl lg:text-6xl transform hover:scale-105 transition-transform duration-300 ${textRotation}`} 
+            style={{
+                textShadow: '0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2), 2px 2px 2px rgba(0, 0, 0, 0.5), 3px 3px 3px rgba(0, 0, 0, 0.5)',
+                perspective: '500px'
+            }}
+            onMouseEnter={() => setTextRotation('rotate-y-45')}
+            onMouseLeave={() => setTextRotation('')}
+        >
+            COMING SOON
+        </p>
+        <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">
+        <div 
+    className={`transition-opacity text-black duration-500 mt-4 flex items-center space-x-2 text-sm md:text-base ${showInstaText ? "opacity-100" : "opacity-0"}`}
 >
-  <div className="flex flex-row space-x-4 pointer-events-none flex-wrap-nowrap"> {/* added flex-wrap-nowrap */}
-  <p
-  className={`text-base sm:text-lg md:text-xl lg:text-2xl xl:text-7xl text-center m-2 transform ${
-    isBlackScreenDone && isComingVisible ? "fade-in-opacity transition-transform duration-500 transform translate-y-0" : "fade-out-opacity translate-y-full"
-}`}
->
-  COMING
-</p>
-<p
-  className={`text-base sm:text-lg md:text-xl lg:text-2xl xl:text-7xl text-center m-2 transform ${
-    isBlackScreenDone && isSoonVisible ? "fade-in-opacity transition-transform duration-500 transform translate-y-0" : "fade-out-opacity -translate-y-full"
-}`}
->
-  SOON
-</p>
-
-
-  </div>
+    <FontAwesomeIcon icon={faInstagram} />
+    <span style={{ marginLeft: '8px' }}>Follow us on Instagram for updates: blok.studios</span>
 </div>
+
+
+</a>
+
+    </div>
+</div>
+
 
     </>
   );
-  
 };
+
 export default Loading;

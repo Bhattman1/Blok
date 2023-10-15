@@ -1,5 +1,7 @@
 "use client"
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 import React, { useState, FormEvent, ChangeEvent, useEffect } from 'react';
 
@@ -37,10 +39,11 @@ const ContactUsAnimation = () => {
                     setBlackScreenDone(true);
                     setTimeout(() => {
                         setShowOverlay(false);
-                    }, 2000); 
-                }, 1000);
+                    }, 1000);
+                }, 2000);
             }, 1000);
         }, 2000);
+        
     }, []);
 
 
@@ -81,7 +84,7 @@ const ContactUsAnimation = () => {
 
   const autoAdvanceStage = () => {
     if (stage === 0) {
-        setTimeout(() => advanceStage(), 2000);  // delay of 3 seconds
+        setTimeout(() => advanceStage(), 3000);  // delay of 3 seconds
     }
   }
   
@@ -262,7 +265,8 @@ return (
 <div 
     className="bottom-text absolute bottom-4 left-5"
 >
-    <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">Connect: Instagram</a>
+    <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">Connect: Instagram </a>
+    <FontAwesomeIcon icon={faInstagram} />
 </div>
 
 {/* Bottom right content on larger screens */}
