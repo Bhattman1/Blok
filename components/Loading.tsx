@@ -4,7 +4,6 @@ import '../app/Team.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
-
 const Loading = () => {
   const [showOverlay, setShowOverlay] = useState(true);
   const [isLoaded, setLoaded] = useState(false);
@@ -12,12 +11,8 @@ const Loading = () => {
   const [isTextVisible, setTextVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false); 
   const [fadeOutText, setFadeOutText] = useState(false);
-  const [textRotation, setTextRotation] = useState<string>('');
 
-  const [showArrow, setShowArrow] = useState(false);
   const [showInstaText, setShowInstaText] = useState(false);
-  
-
 
   useEffect(() => {
     const runAnimation = async () => {
@@ -42,10 +37,7 @@ const Loading = () => {
     }
 
     runAnimation();
-}, []);
-
-
-
+  }, []);
 
   return (
     <>
@@ -76,34 +68,23 @@ const Loading = () => {
         </>
       )}
 
-<div className={`font-Manrope fixed inset-0 flex justify-center items-center z-[250] transition-colors duration-500 text-custom-gray ${contentVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"}`}>
-    <div className="flex flex-col items-center">
-        <p 
-            className={`text-lg text-black md:text-3xl lg:text-6xl transform hover:scale-105 transition-transform duration-300 ${textRotation}`} 
-            style={{
-                textShadow: '0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.2), 2px 2px 2px rgba(0, 0, 0, 0.5), 3px 3px 3px rgba(0, 0, 0, 0.5)',
-                perspective: '500px'
-            }}
-            onMouseEnter={() => setTextRotation('rotate-y-45')}
-            onMouseLeave={() => setTextRotation('')}
-        >
-            COMING SOON
-        </p>
-        <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">
-        <div 
-    className={`transition-opacity text-black duration-500 mt-4 flex items-center space-x-2 text-sm md:text-base ${showInstaText ? "opacity-100" : "opacity-0"}`}
->
-    <FontAwesomeIcon icon={faInstagram} />
-    <span style={{ marginLeft: '8px' }}>Follow us on Instagram for updates: blok.studios</span>
-</div>
-
-
-</a>
-
-    </div>
-</div>
-
-
+      <div className={`font-Manrope fixed inset-0 flex justify-center items-center z-[250] transition-colors duration-500 text-custom-gray ${contentVisible ? "transition-opacity duration-500 opacity-100" : "opacity-0"}`}>
+        <div className="flex flex-col items-center">
+            <p 
+                className="text-lg text-black md:text-3xl lg:text-6xl"
+            >
+                COMING SOON
+            </p>
+            <a href="https://www.instagram.com/blok.studios/" target="_blank" rel="noopener noreferrer">
+                <div 
+                    className={`transition-opacity text-black duration-500 mt-4 flex items-center space-x-2 text-sm md:text-base ${showInstaText ? "opacity-100" : "opacity-0"}`}
+                >
+                    <FontAwesomeIcon icon={faInstagram} />
+                    <span style={{ marginLeft: '8px' }}>Follow us on Instagram for updates: blok.studios</span>
+                </div>
+            </a>
+        </div>
+      </div>
     </>
   );
 };
