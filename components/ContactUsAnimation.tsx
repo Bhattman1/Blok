@@ -229,7 +229,7 @@ return (
                                 value={{ from_name: name, email_id: email_id, message: message }[stages[stage].inputName]}
                                 onChange={handleInputChange}
                                 placeholder="type your answer here..."
-                                className="placeholder-gray-500 bg-transparent focus:outline-none mt-10"
+                                className="placeholder-gray-500 bg-transparent focus:outline-none mt-10 md:placeholder-lg placeholder-sm"
                                 style={{ borderBottom: '2px solid black' }}
                                 required
                             />
